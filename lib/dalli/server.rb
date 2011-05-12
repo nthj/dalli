@@ -480,8 +480,6 @@ module Dalli
     end
 
     def sasl_authentication
-      Dalli.logger.info { "Dalli/SASL authenticating as #{username}" }
-
       # negotiate
       req = [REQUEST, OPCODES[:auth_negotiation], 0, 0, 0, 0, 0, 0, 0].pack(FORMAT[:noop])
       write(req)
