@@ -503,7 +503,7 @@ module Dalli
       (extras, type, status, count) = header.unpack(NORMAL_HEADER)
       raise Dalli::NetworkError, "Unexpected message format: #{extras} #{count}" unless extras == 0 && count > 0
       content = read(count)
-      return Dalli.logger.info("Dalli/SASL: #{content}") if status == 0
+      return "" if status == 0
 
       raise Dalli::DalliError, "Error authenticating: #{status}" unless status == 0x21
       raise NotImplementedError, "No two-step authentication mechanisms supported"
